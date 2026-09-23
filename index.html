@@ -237,16 +237,23 @@ p{text-wrap:pretty}
 /* ------------------------------------------------------------------ hero */
 .hero{position:relative;overflow:hidden;padding-block:clamp(44px,6.5vw,78px) 0}
 /* A quiet collage of the goods, sitting far behind the type. Decorative only. */
+/* Brushed steel. Pure CSS — no images to load, nothing to blur into mud.
+   96deg matches the angle used for the material swatches in the brand sheet. */
 .hero-bed{
-  position:absolute;inset:-8% -2% 0;z-index:-1;pointer-events:none;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-  opacity:.13;filter:sepia(.6) saturate(.62) contrast(.98) blur(2px);
-  -webkit-mask-image:radial-gradient(78% 62% at 50% 30%,#000 0%,transparent 72%);
-  mask-image:radial-gradient(78% 62% at 50% 30%,#000 0%,transparent 72%);
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(96deg,
+    rgba(253,246,206,.034) 0 1px,
+    rgba(54,19,0,.030)    1px 3px,
+    rgba(253,246,206,.018) 3px 4px,
+    rgba(54,19,0,.016)    4px 7px);
+  -webkit-mask-image:radial-gradient(72% 60% at 50% 32%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(72% 60% at 50% 32%,#000 0%,transparent 78%);
 }
-.hero-bed img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4}
-.hero-bed img:nth-child(even){aspect-ratio:4/5;align-self:end}
-@media(min-width:900px){ .hero-bed{grid-template-columns:repeat(6,1fr)} }
+/* a warm bloom, as if one lamp is catching the metal */
+.hero-bed::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(46% 38% at 50% 24%,rgba(254,204,110,.11),transparent 72%);
+}
 
 .hero-in{position:relative;text-align:center;padding-bottom:clamp(38px,5.5vw,58px)}
 .hero .mark{width:min(430px,74%);margin:0 auto clamp(20px,2.8vw,28px)}
@@ -563,7 +570,6 @@ p{text-wrap:pretty}
     <nav class="nav" id="nav" aria-label="Sections">
       <a href="#stock">What we stock</a>
       <a href="#gifting">Gifting</a>
-      <a href="#steel">The steel</a>
       <a href="#buying">Buying</a>
       <a href="#visit">Visit</a>
     </nav>
@@ -585,15 +591,8 @@ p{text-wrap:pretty}
 <section class="dark grain" id="hero">
   <div class="hero">
 
-    <!-- Decorative collage of the goods, well behind the type. -->
-    <div class="hero-bed" id="heroBed" aria-hidden="true">
-      <img src="assets/photos/cookware.jpg" alt="" loading="eager" decoding="async" width="880" height="660">
-      <img src="assets/photos/kitchen-tools.jpg" alt="" loading="eager" decoding="async" width="880" height="660">
-      <img src="assets/photos/hotelware.jpg" alt="" loading="lazy" decoding="async" width="880" height="660">
-      <img src="assets/photos/gifting.jpg" alt="" loading="lazy" decoding="async" width="880" height="660">
-      <img src="assets/photos/designer-ware.jpg" alt="" loading="lazy" decoding="async" width="880" height="660">
-      <img src="assets/photos/storage.jpg" alt="" loading="lazy" decoding="async" width="880" height="660">
-    </div>
+    <!-- Brushed-steel texture layer, drawn in CSS. -->
+    <div class="hero-bed" id="heroBed" aria-hidden="true"></div>
 
     <div class="hero-in wrap">
       <div class="sheen" data-reveal="fade">
@@ -830,66 +829,6 @@ p{text-wrap:pretty}
   </div>
 </section>
 
-<!-- ================================ THE STEEL =============================
-     Answers, in advance, the specific objections that appear in the shop's
-     public reviews: grade, weight, finish. Only keep a promise here that the
-     shop will actually honour at the counter.
-========================================================================== -->
-<section class="band" id="steel">
-  <div class="wrap">
-    <div class="head" data-reveal="up">
-      <p class="rule"><span class="spec">The steel</span></p>
-      <h2>304 or 202 — know which one you're carrying home</h2>
-      <p>Both are honest products. They cost different money because they are different metal,
-         and across a busy counter the difference is not always visible. So here it is in writing.</p>
-    </div>
-
-    <div class="grades" data-reveal="up">
-      <table>
-        <caption class="sr">Comparison of 304 and 202 grade stainless steel</caption>
-        <thead>
-          <tr><th scope="col">Property</th><th scope="col">304 grade</th><th scope="col">202 grade</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Also called</th>
-            <td data-h="304"><b>18/8 food grade</b></td>
-            <td data-h="202"><b>200 series</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Nickel content</th>
-            <td data-h="304">Around 8% — the nickel is what resists rust</td>
-            <td data-h="202">Around 1–4%, with manganese in its place</td>
-          </tr>
-          <tr>
-            <th scope="row">Rust resistance</th>
-            <td data-h="304">Highest. Handles salt, tamarind and long soaking</td>
-            <td data-h="202">Good in dry use. Can spot if left wet or with salt</td>
-          </tr>
-          <tr>
-            <th scope="row">Best for</th>
-            <td data-h="304">Cooking vessels, hotel service, anything acidic or stored wet</td>
-            <td data-h="202">Dry storage, serving, decorative and gifting pieces</td>
-          </tr>
-          <tr>
-            <th scope="row">Price</th>
-            <td data-h="304">Higher — you are paying for the nickel</td>
-            <td data-h="202">Lower, at the same look and finish</td>
-          </tr>
-          <tr>
-            <th scope="row">At our counter</th>
-            <td data-h="304">Stated on request, every item</td>
-            <td data-h="202">Stated on request, every item</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="spec" style="color:var(--terra);margin-top:16px">
-      Ask for the grade on anything. If we can't tell you, don't buy it.
-    </p>
-  </div>
-</section>
-
 <!-- ============================= BUYING FROM US =========================== -->
 <section class="dark grain band" id="buying">
   <div class="wrap">
@@ -902,7 +841,7 @@ p{text-wrap:pretty}
     <div class="steps" data-stagger>
       <div class="step" data-reveal="up">
         <h3>Grade is stated</h3>
-        <p>Ask for the grade on any item and we'll tell you — 304 and 202 are both honest products at different prices, but you should know which one you're carrying home.</p>
+        <p>Ask for the grade on any item and we'll tell you, so you know exactly what you're carrying home.</p>
       </div>
       <div class="step" data-reveal="up">
         <h3>Weight is checked</h3>
@@ -1016,7 +955,6 @@ p{text-wrap:pretty}
         <ul>
           <li><a href="#stock">What we stock</a></li>
           <li><a href="#gifting">Gifting &amp; bulk</a></li>
-          <li><a href="#steel">304 vs 202</a></li>
           <li><a href="#buying">Buying from us</a></li>
           <li><a href="#visit">Visit the shop</a></li>
         </ul>
